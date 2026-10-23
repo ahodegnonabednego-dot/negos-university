@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumés des cours - Négo's University</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1d2d44;
+        }
+
+        header {
+            background: #123b72;
+            color: white;
+            padding: 25px 16px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 16px;
+        }
+
+        .retour {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1759a6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .matiere {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+
+        .chapitre {
+            display: block;
+            padding: 16px;
+            margin-top: 12px;
+            background: #edf4ff;
+            border: 1px solid #d7e6fb;
+            border-radius: 10px;
+            color: #123b72;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .chapitre:hover {
+            background: #dceaff;
+        }
+
+        .note {
+            color: #617086;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #617086;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Négo's University</h1>
+        <p>Résumés des cours par chapitre</p>
+    </header>
+
+    <main>
+        <a class="retour" href="/">← Retour à l'accueil</a>
+        <div class="recherche">
+            <input
+                type="search"
+                id="rechercheCours"
+                placeholder="Rechercher un chapitre..."
+                aria-label="Rechercher un chapitre"
+            >
+            <p id="messageRecherche" class="note">
+                5 chapitres disponibles.
+            </p>
+        </div>
+        <section class="matiere">
+            <h2>Théorie des ensembles</h2>
+            <p class="note">
+                Choisis un chapitre pour consulter son résumé.
+                Les contenus détaillés seront ajoutés progressivement.
+            </p>
+
+            <a class="chapitre" href="/resume/1">
+                Chapitre 1 — Introduction à la théorie des ensembles
+            </a>
+
+            <a class="chapitre" href="/resume/2">
+                Chapitre 2 — Généralités sur les ensembles
+            </a>
+
+            <a class="chapitre" href="/resume/3">
+                Chapitre 3 — Correspondances entre ensembles
+            </a>
+
+            <a class="chapitre" href="/resume/4">
+                Chapitre 4 — Cardinalités et dénombrement
+            </a>
+
+            <a class="chapitre" href="/resume/5">
+                Chapitre 5 — Ensembles structurés
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        Négo's University — Apprendre, comprendre, réussir.
+    </footer>     <script>
+        const recherche = document.getElementById("rechercheCours");
+        const chapitres = document.querySelectorAll(".chapitre");
+        const message = document.getElementById("messageRecherche");
+
+        recherche.addEventListener("input", function () {
+            const texte = recherche.value
+                .toLocaleLowerCase("fr")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+
+            let nombre = 0;
+
+            chapitres.forEach(function (chapitre) {
+                const titre = chapitre.textContent
+                    .toLocaleLowerCase("fr")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
+
+                const correspond = titre.includes(texte);
+                chapitre.style.display = correspond ? "block" : "none";
+
+                if (correspond) {
+                    nombre++;
+                }
+            });
+
+            message.textContent = nombre + " chapitre(s) trouvé(s).";
+        });
+    </script>
+</body>
+</html>
+

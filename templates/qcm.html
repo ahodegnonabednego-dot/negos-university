@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Négo’s University - QCM</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#172033}
+header{background:#123b75;color:white;text-align:center;padding:24px 12px}
+main{max-width:750px;margin:20px auto;padding:12px}
+.card{background:white;padding:20px;border-radius:14px;margin-bottom:15px;box-shadow:0 3px 12px #0001}
+button{padding:12px;border:0;border-radius:8px;cursor:pointer;font-size:15px}
+.primary{background:#2463b4;color:white}
+.option{display:block;width:100%;text-align:left;margin:8px 0;background:#edf2f8;color:#172033}
+.option:hover{background:#dceaff}
+#feedback{padding:12px;border-radius:8px;margin-top:12px}
+.good{background:#d8f7e5;color:#14532d}
+.bad{background:#fee2e2;color:#991b1b}
+.hidden{display:none}
+.bar{height:8px;background:#e2e8f0;border-radius:8px;overflow:hidden;margin:12px 0}
+#progress{height:100%;width:0;background:#22a06b}
+</style>
+</head>
+<body>
+<header>
+<h1>Négo’s University</h1>
+<p>Chapitre 2 : Généralités sur les ensembles</p>
+</header>
+<main>
+<div class="card" id="intro">
+<h2>QCM — Niveau facile</h2>
+<p>25 questions pour vérifier les bases du cours.</p>
+<p>Choisis une réponse, puis lis la correction.</p>
+<button class="primary" onclick="demarrer()">Commencer</button>
+</div>
+
+<div class="card hidden" id="jeu">
+<p id="numero"></p>
+<div class="bar"><div id="progress"></div></div>
+<h3 id="question"></h3>
+<div id="choix"></div>
+<div id="feedback"></div>
+<button class="primary" id="suivant" onclick="continuer()" disabled>Vérifier</button>
+</div>
+
+<div class="card hidden" id="resultat">
+<h2>Résultat final</h2>
+<h3 id="score"></h3>
+<p id="message"></p>
+<button class="primary" onclick="location.reload()">Recommencer</button>
+</div>
+</main>
+
+<script>
+const questions = [
+{q:"1. Un ensemble est :",o:["Une collection d’éléments bien définis","Une opération","Un seul nombre","Une équation"],a:0,e:"Un ensemble est une collection d’éléments bien définis."},
+{q:"2. Quel symbole signifie « appartient à » ?",o:["⊂","∈","∪","∩"],a:1,e:"x ∈ A signifie que x est un élément de A."},
+{q:"3. Quel symbole signifie « est inclus dans » ?",o:["∈","⊂","∪","∉"],a:1,e:"A ⊂ B signifie que tous les éléments de A appartiennent à B."},
+{q:"4. L’ensemble vide se note :",o:["{0}","∅","{1}","E"],a:1,e:"L’ensemble vide ne contient aucun élément."},
+{q:"5. Combien d’éléments contient l’ensemble vide ?",o:["1","2","0","Une infinité"],a:2,e:"L’ensemble vide contient zéro élément."},
+{q:"6. Si A={1,2,3}, alors 2 :",o:["∈ A","∉ A","= A","⊂ A"],a:0,e:"Le nombre 2 est un élément de A."},
+{q:"7. Si A={1,2,3}, alors 5 :",o:["∈ A","⊂ A","∉ A","= A"],a:2,e:"Le nombre 5 n'appartient pas à A."},
+{q:"8. L’union A ∪ B contient :",o:["Les éléments de A ou de B","Seulement les éléments communs","Seulement ceux de A","Aucun élément"],a:0,e:"L’union rassemble les éléments appartenant à A, à B ou aux deux."},
+{q:"9. L’intersection A ∩ B contient :",o:["Tous les éléments de A et B sans distinction","Les éléments communs","Les éléments absents de A","Toujours ∅"],a:1,e:"L’intersection contient les éléments communs aux deux ensembles."},
+{q:"10. Si A={1,2} et B={2,3}, A ∪ B vaut :",o:["{2}","{1,2,3}","{1,3}","{1,2,2,3}"],a:1,e:"On réunit les éléments sans répéter 2."},
+{q:"11. Si A={1,2} et B={2,3}, A ∩ B vaut :",o:["{1,2,3}","{1,3}","{2}","∅"],a:2,e:"Le seul élément commun est 2."},
+{q:"12. A \\ B désigne :",o:["Les éléments de A qui ne sont pas dans B","Les éléments communs","L’union","Les éléments de B seulement"],a:0,e:"A \\ B conserve les éléments de A qui ne sont pas dans B."},
+{q:"13. Si A={1,2,3} et B={2}, A \\ B vaut :",o:["{2}","{1,3}","{1,2,3}","∅"],a:1,e:"On retire 2 de A : il reste 1 et 3."},
+{q:"14. Deux ensembles A et B sont égaux si :",o:["Ils ont le même nom","Ils ont les mêmes éléments","Ils sont non vides","Ils ont un élément commun"],a:1,e:"Deux ensembles sont égaux lorsqu’ils possèdent exactement les mêmes éléments."},
+{q:"15. Si A={1,2} et B={1,2}, alors :",o:["A=B","A∩B=∅","A∪B={1}","A≠B"],a:0,e:"A et B contiennent exactement les mêmes éléments."},
+{q:"16. Si A={1,2} et B={1,2,3}, alors :",o:["A ⊂ B","B ⊂ A","A=B","A∩B=∅"],a:0,e:"Tous les éléments de A appartiennent à B."},
+{q:"17. Si A ⊂ B, alors :",o:["Tout élément de B est dans A","Tout élément de A est dans B","A=B forcément","A=∅ forcément"],a:1,e:"C’est la définition de l’inclusion."},
+{q:"18. L’ensemble {a,a,b} s’écrit :",o:["{a,a,a,b}","{a,b}","{a}","{b}"],a:1,e:"Les répétitions ne changent pas un ensemble."},
+{q:"19. Si A={1,2} et B={3,4}, A ∩ B vaut :",o:["{1,2,3,4}","{1,3}","∅","{2,4}"],a:2,e:"A et B n’ont aucun élément commun."},
+{q:"20. Si A={1,2} et B={3,4}, A ∪ B vaut :",o:["∅","{1,2,3,4}","{2,3}","{1,4}"],a:1,e:"L’union rassemble tous les éléments des deux ensembles."},
+{q:"21. Le complémentaire de A dans E contient :",o:["Les éléments de E qui ne sont pas dans A","Les éléments de A seulement","Les éléments communs","Toujours un élément"],a:0,e:"Le complémentaire de A dans E est E \\ A."},
+{q:"22. Si E={1,2,3,4} et A={1,3}, le complémentaire de A dans E vaut :",o:["{1,3}","{2,4}","{1,2,3,4}","∅"],a:1,e:"Les éléments de E qui ne sont pas dans A sont 2 et 4."},
+{q:"23. La différence symétrique A Δ B contient :",o:["Les éléments communs seulement","Les éléments appartenant à un seul des deux ensembles","Tous les éléments de E","Toujours ∅"],a:1,e:"A Δ B=(A\\B)∪(B\\A)."},
+{q:"24. A ∪ ∅ vaut :",o:["∅","A","E toujours","A ∩ ∅"],a:1,e:"L’union avec l’ensemble vide ne change pas A."},
+{q:"25. A ∩ ∅ vaut :",o:["A","E","∅","{A}"],a:2,e:"Aucun élément ne peut être commun à A et à l’ensemble vide."}
+,,
+/* 25 QUESTIONS — NIVEAU MOYEN */
+,
+{q:"26. Si A ∪ B = B, alors :",o:["B ⊂ A","A ⊂ B","A ∩ B = ∅","A = B forcément"],a:1,e:"L’union n’ajoute aucun élément à B si tous les éléments de A sont déjà dans B."},
+{q:"27. Si A ∩ B = B, alors :",o:["A ⊂ B","B ⊂ A","A = ∅","A ∪ B = ∅"],a:1,e:"Tous les éléments de B doivent appartenir à A."},
+{q:"28. Si A={1,2,3,4} et B={3,4,5}, A ∪ B vaut :",o:["{3,4}","{1,2,3,4,5}","{1,2,5}","{1,2,3}"],a:1,e:"L’union réunit tous les éléments sans répétition."},
+{q:"29. Avec les mêmes ensembles, A ∩ B vaut :",o:["{1,2}","{3,4}","{5}","∅"],a:1,e:"Les éléments communs sont 3 et 4."},
+{q:"30. Avec A={1,2,3,4} et B={3,4,5}, A \\ B vaut :",o:["{5}","{1,2}","{3,4}","{1,2,5}"],a:1,e:"On garde les éléments de A qui ne sont pas dans B."},
+{q:"31. Avec les mêmes ensembles, B \\ A vaut :",o:["{1,2}","{3,4}","{5}","{1,2,5}"],a:2,e:"Seul 5 appartient à B sans appartenir à A."},
+{q:"32. Si A ⊂ B et B ⊂ C, alors :",o:["C ⊂ A","A ⊂ C","A = C forcément","A ∩ C = ∅"],a:1,e:"L’inclusion est transitive."},
+{q:"33. Si A ⊂ B, alors A ∩ B vaut :",o:["A","B","∅","A ∪ B"],a:0,e:"Tous les éléments de A appartiennent aussi à B."},
+{q:"34. Si A ⊂ B, alors A ∪ B vaut :",o:["A","B","∅","A \\ B"],a:1,e:"B contient déjà tous les éléments de A."},
+{q:"35. Quelle égalité est toujours vraie ?",o:["A ∪ B = A ∩ B","A ∪ B = B ∪ A","A \\ B = B \\ A","A ⊂ B implique A = B"],a:1,e:"L’union est commutative."},
+{q:"36. La commutativité de l’intersection s’écrit :",o:["A ∩ B = B ∩ A","A ∩ B = A ∪ B","A ∩ ∅ = A","A \\ B = B \\ A"],a:0,e:"L’ordre des ensembles ne change pas leur intersection."},
+{q:"37. A ∪ (B ∪ C) est égal à :",o:["(A ∪ B) ∪ C","A ∩ B ∩ C","A \\ (B ∪ C)","∅"],a:0,e:"L’union est associative."},
+{q:"38. A ∩ (B ∩ C) est égal à :",o:["(A ∩ B) ∩ C","A ∪ B ∪ C","A \\ B","E"],a:0,e:"L’intersection est associative."},
+{q:"39. A ∪ (B ∩ C) est égal à :",o:["(A ∪ B) ∩ (A ∪ C)","(A ∩ B) ∪ (A ∩ C)","A ∩ B ∩ C","A ∪ B ∪ C"],a:0,e:"C’est une loi de distributivité."},
+{q:"40. A ∩ (B ∪ C) est égal à :",o:["(A ∪ B) ∩ C","(A ∩ B) ∪ (A ∩ C)","A ∪ B ∪ C","A \\ (B ∪ C)"],a:1,e:"L’intersection se distribue sur l’union."},
+{q:"41. Si A={1,2}, B={2,3}, C={2,4}, B ∩ C vaut :",o:["{2}","{2,3,4}","{3,4}","∅"],a:0,e:"Le seul élément commun à B et C est 2."},
+{q:"42. Avec A={1,2}, B={2,3}, C={2,4}, A ∪ (B ∩ C) vaut :",o:["{1,2}","{2}","{1,2,3,4}","{1,3,4}"],a:0,e:"B ∩ C={2}, donc A ∪ {2}={1,2}."},
+{q:"43. Avec A={1,2}, B={2,3}, C={2,4}, A ∩ (B ∪ C) vaut :",o:["{1,2,3,4}","{2}","{1}","∅"],a:1,e:"B ∪ C={2,3,4}; l’intersection avec A donne {2}."},
+{q:"44. A \\ ∅ vaut :",o:["∅","A","E","A ∩ ∅"],a:1,e:"Retirer les éléments de l’ensemble vide ne retire rien."},
+{q:"45. ∅ \\ A vaut :",o:["A","E","∅","A ∪ ∅"],a:2,e:"L’ensemble vide ne contient aucun élément."},
+{q:"46. Si A ∩ B = ∅, A et B sont :",o:["Égaux","Disjoints","Complémentaires forcément","Identiques"],a:1,e:"Ils n’ont aucun élément commun."},
+{q:"47. Si E={1,2,3,4,5} et A={1,3,5}, le complémentaire de A dans E est :",o:["{1,3,5}","{2,4}","E","∅"],a:1,e:"Le complémentaire est E \\ A."},
+{q:"48. Si A=B, alors A Δ B vaut :",o:["A","B","∅","E"],a:2,e:"Les éléments sont tous communs, donc aucun ne se trouve dans un seul ensemble."},
+{q:"49. Si A={1,2,3} et B={3,4}, A Δ B vaut :",o:["{3}","{1,2,4}","{1,2,3,4}","∅"],a:1,e:"On garde 1, 2 et 4, mais on exclut 3 car il est commun."},
+{q:"50. Si A={1,2} et B={2,3}, A ∪ B vaut :",o:["{2}","{1,2,3}","{1,3}","∅"],a:1,e:"L’union contient les éléments de A et de B sans doublons."}
+
+,
+{q:"51. A ∪ B = B est équivalent à :",o:["B ⊂ A","A ⊂ B","A ∩ B = ∅","A = B"],a:1,e:"A ∪ B = B signifie que tous les éléments de A appartiennent déjà à B."},
+{q:"52. A ∩ B = B est équivalent à :",o:["A ⊂ B","B ⊂ A","A ∪ B = ∅","A = ∅"],a:1,e:"Si A ∩ B = B, tous les éléments de B appartiennent à A."},
+{q:"53. Pour montrer que A ⊂ B, il faut montrer que :",o:["Tout élément de A appartient à B","Tout élément de B appartient à A","A et B sont disjoints","A ∪ B = ∅"],a:0,e:"La définition de l'inclusion est : pour tout x, si x ∈ A alors x ∈ B."},
+{q:"54. Si A ⊂ B, alors :",o:["A ∪ B = A","A ∩ B = B","A ∩ B = A","A = B toujours"],a:2,e:"Les éléments communs à A et B sont exactement ceux de A."},
+{q:"55. Si A ⊂ B, alors :",o:["A ∪ B = B","A ∪ B = A","A ∩ B = B","A et B sont disjoints"],a:0,e:"L'union ne rajoute aucun élément à B puisque A est inclus dans B."},
+{q:"56. Laquelle est une loi de De Morgan ?",o:["(A ∪ B)ᶜ = Aᶜ ∪ Bᶜ","(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ","A ∪ B = A ∩ B","A \\ B = B \\ A"],a:1,e:"Le complémentaire d'une union est l'intersection des complémentaires, relativement à un ensemble de référence E."},
+{q:"57. Le complémentaire de A ∩ B est :",o:["Aᶜ ∩ Bᶜ","Aᶜ ∪ Bᶜ","A ∩ B","A ∪ B"],a:1,e:"Selon la loi de De Morgan, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ."},
+{q:"58. Si E={1,2,3,4,5,6}, A={1,2,4} et B={2,3,4}, A ∩ B vaut :",o:["{1,3}","{2,4}","{1,2,3,4}","{5,6}"],a:1,e:"L'intersection contient uniquement les éléments présents dans A et dans B."},
+{q:"59. Avec les ensembles de la question 58, A ∪ B vaut :",o:["{2,4}","{1,2,3,4}","{1,2,3,4,5,6}","{5,6}"],a:1,e:"L'union rassemble tous les éléments de A et de B sans répétition."},
+{q:"60. Avec les ensembles de la question 58, A \\ B vaut :",o:["{1}","{3}","{2,4}","{1,3}"],a:0,e:"On conserve les éléments de A qui ne sont pas dans B : seul 1 convient."},
+{q:"61. Avec les ensembles de la question 58, le complémentaire de A dans E est :",o:["{1,2,4}","{3,5,6}","{2,3,5}","{5,6}"],a:1,e:"Le complémentaire contient les éléments de E qui ne sont pas dans A."},
+{q:"62. A Δ B désigne :",o:["A ∩ B","A ∪ B","Les éléments appartenant à un seul des deux ensembles","Le complémentaire de A"],a:2,e:"La différence symétrique contient les éléments de A ∪ B qui ne sont pas dans A ∩ B."},
+{q:"63. Laquelle est toujours vraie ?",o:["A Δ B = B Δ A","A Δ B = A ∩ B","A Δ B = A ∪ B","A Δ B = A"],a:0,e:"La différence symétrique est commutative."},
+{q:"64. Si A Δ B = ∅, alors :",o:["A ∩ B = ∅","A = B","A ∪ B = ∅","A ⊂ B sans autre condition"],a:1,e:"La différence symétrique est vide exactement lorsque les deux ensembles sont égaux."},
+{q:"65. Si A={1,2,3} et B={3,4,5}, A Δ B vaut :",o:["{3}","{1,2,4,5}","{1,2,3,4,5}","∅"],a:1,e:"On garde les éléments présents dans un seul ensemble et on exclut 3, qui est commun."},
+{q:"66. La différence symétrique est associative : quelle égalité est correcte ?",o:["(A Δ B) Δ C = A Δ (B Δ C)","A Δ B = A ∩ B","A Δ B = A \\ B toujours","A Δ B = ∅ toujours"],a:0,e:"L'association des opérations ne change pas le résultat de la différence symétrique."},
+{q:"67. Si A Δ C = B Δ C, alors :",o:["A ∩ B = ∅","A = B","A = C","B = C toujours"],a:1,e:"La différence symétrique avec le même ensemble C permet de retrouver l'égalité A = B."},
+{q:"68. Quelle égalité décrit la distributivité de ∩ sur ∪ ?",o:["A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)","A ∩ (B ∪ C) = A ∪ B ∪ C","A ∩ (B ∪ C) = A \\ B","A ∩ (B ∪ C) = ∅"],a:0,e:"L'intersection se distribue sur l'union."},
+{q:"69. Quelle égalité décrit la distributivité de ∪ sur ∩ ?",o:["A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)","A ∪ (B ∩ C) = A ∩ B ∩ C","A ∪ (B ∩ C) = A \\ C","A ∪ (B ∩ C) = ∅"],a:0,e:"L'union se distribue sur l'intersection."},
+{q:"70. A ∩ (B ∪ C) est égal à :",o:["(A ∩ B) ∪ (A ∩ C)","(A ∪ B) ∩ C","A ∪ B ∪ C","A \\ (B ∪ C)"],a:0,e:"C'est la distributivité de l'intersection sur l'union."},
+{q:"71. Si A ∩ B = A, alors :",o:["A ⊂ B","B ⊂ A","A ∩ B = ∅","A ∪ B = ∅"],a:0,e:"Tout élément de A appartient aussi à B."},
+{q:"72. Si A ∪ B = A, alors :",o:["A ⊂ B","B ⊂ A","A ∩ B = ∅","A = ∅"],a:1,e:"L'union reste A lorsque tous les éléments de B sont déjà dans A."},
+{q:"73. Pour prouver A = B, une méthode classique consiste à démontrer :",o:["A ⊂ B seulement","B ⊂ A seulement","A ⊂ B et B ⊂ A","A ∩ B = ∅"],a:2,e:"Deux ensembles sont égaux si et seulement si chacun est inclus dans l'autre."},
+{q:"74. Si A et B sont disjoints, alors :",o:["A ∩ B = E","A ∪ B = ∅ forcément","A ∩ B = ∅","A = B"],a:2,e:"Deux ensembles disjoints n'ont aucun élément commun."},
+{q:"75. Pour tous ensembles A et B, A Δ B est égal à :",o:["(A ∩ B)","(A \\ B) ∪ (B \\ A)","A ∩ Bᶜ uniquement","A ∪ B"],a:1,e:"La différence symétrique regroupe les éléments de A qui ne sont pas dans B et ceux de B qui ne sont pas dans A."}
+];
+
+
+let i=0, score=0, selection=null, corrige=false;
+
+function demarrer(){
+ document.getElementById("intro").classList.add("hidden");
+ document.getElementById("jeu").classList.remove("hidden");
+ afficher();
+}
+
+function afficher(){
+ const q=questions[i];
+ selection=null;
+ corrige=false;
+ document.getElementById("numero").textContent="Question "+(i+1)+" / "+questions.length+" | Score : "+score;
+ document.getElementById("progress").style.width=(i/questions.length*100)+"%";
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("feedback").textContent="";
+ document.getElementById("feedback").className="";
+ document.getElementById("suivant").textContent="Vérifier";
+ document.getElementById("suivant").disabled=true;
+ const zone=document.getElementById("choix");
+ zone.innerHTML="";
+ q.o.forEach((texte,n)=>{
+  const b=document.createElement("button");
+  b.className="option";
+  b.textContent=String.fromCharCode(65+n)+". "+texte;
+  b.onclick=()=>{
+   if(corrige)return;
+   selection=n;
+   document.querySelectorAll(".option").forEach(x=>x.style.outline="");
+   b.style.outline="2px solid #2463b4";
+   document.getElementById("suivant").disabled=false;
+  };
+  zone.appendChild(b);
+ });
+}
+
+function continuer(){
+ const bouton=document.getElementById("suivant");
+ const fb=document.getElementById("feedback");
+ if(!corrige){
+  if(selection===null)return;
+  corrige=true;
+  const q=questions[i];
+  const ok=selection===q.a;
+  if(ok)score++;
+  document.querySelectorAll(".option").forEach((b,n)=>{
+   b.disabled=true;
+   if(n===q.a)b.style.background="#d8f7e5";
+   else if(n===selection)b.style.background="#fee2e2";
+  });
+  fb.textContent=(ok?"Bonne réponse ! ":"Réponse incorrecte. ")+q.e;
+  fb.className=ok?"good":"bad";
+  document.getElementById("numero").textContent="Question "+(i+1)+" / "+questions.length+" | Score : "+score;
+  document.getElementById("progress").style.width=((i+1)/questions.length*100)+"%";
+  bouton.textContent=i===questions.length-1?"Voir le résultat":"Question suivante";
+ }else{
+  i++;
+  if(i<questions.length)afficher();
+  else{
+   document.getElementById("jeu").classList.add("hidden");
+   document.getElementById("resultat").classList.remove("hidden");
+   document.getElementById("score").textContent=score+" / "+questions.length+" ("+Math.round(score/questions.length*100)+" %)";
+   document.getElementById("message").textContent=score>=20?"Excellent travail !":score>=15?"Bon travail, continue les révisions.":"Relis le cours et recommence pour progresser.";
+  }
+ }
+}
+</script>
+</body>
+</html>
+

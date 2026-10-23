@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Négo’s University</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8ff;
+            color: #172554;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #00000010;
+        }
+
+        .logo {
+            color: #1455c0;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1245a8, #2785ef);
+            color: white;
+            padding: 55px 22px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            line-height: 1.7;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 30px 18px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px #163b7010;
+        }
+
+        .card h3 {
+            color: #1455c0;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #526079;
+        }
+
+        .link {
+            display: inline-block;
+            margin-top: 10px;
+            background: #1455c0;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: white;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Négo’s University</div>
+    </header>
+
+    <section class="hero">
+        <h1>Bienvenue à Négo’s University</h1>
+        <p>
+            Apprends plus efficacement grâce aux résumés de cours,
+            aux quiz interactifs et aux exercices corrigés.
+            Progresse à ton rythme et prépare ta réussite.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Ton espace d’apprentissage</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>📘 Résumés de cours</h3>
+                <p>Retrouve l’essentiel de tes cours pour réviser plus facilement.</p>
+                <a class="link" href="/resumes">Découvrir</a>
+            </div>
+
+            <div class="card">
+                <h3>🧠 Quiz interactifs</h3>
+                <p>Teste tes connaissances et consulte ton score à la fin du quiz.</p>
+                <a class="link" href="/qcm">Découvrir les QCM</a>
+            </div>
+
+            <div class="card">
+                <h3>✍️ Exercices corrigés</h3>
+                <p>Entraîne-toi avec des exercices accompagnés de corrections détaillées.</p>
+                <a class="link" href="#exercices">S’entraîner</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="cours">
+        <h2>Première matière</h2>
+        <div class="card">
+            <h3>Théorie des ensembles</h3>
+            <p>
+                Notre première matière sera organisée en chapitres,
+                avec des résumés, des quiz et des exercices corrigés.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="exercices">
+        <h2>Notre objectif</h2>
+        <p style="text-align:center; line-height:1.8;">
+            Aider les étudiants à mieux comprendre leurs cours,
+            à s’exercer régulièrement et à progresser ensemble.
+        </p>
+    </section>
+
+    <footer>
+        Négo’s University — Apprendre, comprendre, réussir.
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé du chapitre - Négo's University</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1d2d44;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #123b72;
+            color: white;
+            padding: 25px 16px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 0 16px;
+        }
+
+        .retour {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1759a6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contenu {
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+
+        h2 {
+            color: #123b72;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #617086;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Négo's University</h1>
+        <p>Comprendre le cours, chapitre par chapitre</p>
+    </header>
+
+    <main>
+        <a class="retour" href="/resumes">← Retour aux chapitres</a>
+
+        <article class="contenu">
+            {% if numero == 1 %}
+                <h2>Chapitre 1 : Introduction à la théorie des ensembles</h2>
+
+                <h3>1. Objectif du chapitre</h3>
+                <p>
+                    Ce chapitre introduit la notion de théorie mathématique,
+                    les concepts, les définitions, les axiomes, les propriétés,
+                    les théorèmes et les démonstrations.
+                </p>
+
+                <h3>2. Vocabulaire essentiel</h3>
+                <ul>
+                    <li><strong>Définition :</strong> précise le sens d'un concept.</li>
+                    <li><strong>Axiome :</strong> affirmation admise comme point de départ.</li>
+                    <li><strong>Propriété :</strong> affirmation que l'on établit à partir des règles et résultats disponibles.</li>
+                    <li><strong>Théorème :</strong> résultat mathématique démontré.</li>
+                    <li><strong>Démonstration :</strong> raisonnement justifiant un résultat.</li>
+                    <li><strong>Lemme :</strong> résultat auxiliaire utile pour une démonstration.</li>
+                    <li><strong>Corollaire :</strong> conséquence directe d'un résultat établi.</li>
+                </ul>
+
+                <h3>3. Les axiomes</h3>
+                <p>
+                    Les axiomes servent de fondements à une théorie mathématique.
+                    Le système ZFC est un système axiomatique utilisé en théorie
+                    des ensembles.
+                </p>
+
+                <h3>4. À retenir</h3>
+                <ul>
+                    <li>Un axiome est admis comme point de départ.</li>
+                    <li>Un théorème doit être démontré.</li>
+                    <li>Une démonstration justifie logiquement une affirmation.</li>
+                </ul>
+
+            {% elif numero == 2 %}
+                <h2>Chapitre 2 : Généralités sur les ensembles</h2>
+
+                <h3>1. Notion d'ensemble</h3>
+                <p>
+                    Un ensemble est une collection d'objets appelés éléments.
+                    Si un élément x appartient à un ensemble A, on écrit
+                    x ∈ A. S'il n'y appartient pas, on écrit x ∉ A.
+                </p>
+
+                <h3>2. Inclusion et égalité</h3>
+                <p>
+                    A est inclus dans B, noté A ⊆ B, lorsque tout élément
+                    de A appartient aussi à B.
+                </p>
+                <p>
+                    Deux ensembles A et B sont égaux lorsqu'ils possèdent
+                    exactement les mêmes éléments. On peut démontrer leur
+                    égalité en établissant A ⊆ B et B ⊆ A.
+                </p>
+
+                <h3>3. Ensembles particuliers</h3>
+                <ul>
+                    <li><strong>Ensemble vide :</strong> ∅, ensemble sans élément.</li>
+                    <li><strong>Ensemble de référence :</strong> E, ensemble dans lequel on travaille.</li>
+                    <li><strong>Ensemble des parties :</strong> P(A), ensemble de toutes les parties de A.</li>
+                </ul>
+
+                <h3>4. Opérations sur les ensembles</h3>
+                <ul>
+                    <li><strong>Union A ∪ B :</strong> éléments appartenant à A ou à B.</li>
+                    <li><strong>Intersection A ∩ B :</strong> éléments appartenant à la fois à A et à B.</li>
+                    <li><strong>Différence A \\ B :</strong> éléments de A qui n'appartiennent pas à B.</li>
+                    <li><strong>Complémentaire de A :</strong> éléments de E qui n'appartiennent pas à A, soit E \\ A.</li>
+                    <li><strong>Différence symétrique A Δ B :</strong> éléments appartenant à un seul des deux ensembles.</li>
+                </ul>
+
+                <h3>5. Exemple d'application</h3>
+                <p>
+                    Soient A = {1, 2, 3} et B = {3, 4}.
+                </p>
+                <ul>
+                    <li>A ∪ B = {1, 2, 3, 4}</li>
+                    <li>A ∩ B = {3}</li>
+                    <li>A \\ B = {1, 2}</li>
+                    <li>B \\ A = {4}</li>
+                    <li>A Δ B = {1, 2, 4}</li>
+                </ul>
+
+                <h3>6. Produit cartésien</h3>
+                <p>
+                    Le produit cartésien A × B est l'ensemble des couples
+                    ordonnés (a, b), où a ∈ A et b ∈ B.
+                    En général, A × B n'est pas égal à B × A.
+                </p>
+
+                <h3>7. Propriétés importantes</h3>
+                <ul>
+                    <li>A ∪ B = B ∪ A (commutativité de l'union).</li>
+                    <li>A ∩ B = B ∩ A (commutativité de l'intersection).</li>
+                    <li>A ∪ A = A et A ∩ A = A (idempotence).</li>
+                    <li>A ∪ ∅ = A et A ∩ ∅ = ∅.</li>
+                    <li>A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).</li>
+                    <li>A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C).</li>
+                </ul>
+
+                <h3>8. À retenir</h3>
+                <p>
+                    Pour résoudre un exercice, identifie d'abord les éléments
+                    des ensembles, puis applique la définition de l'opération
+                    demandée. Pour démontrer une inclusion, prends un élément
+                    arbitraire du premier ensemble et montre qu'il appartient
+                    au second.
+                </p>
+
+            {% elif numero == 3 %}
+                <h2>Chapitre 3 : Correspondances entre ensembles</h2>
+
+                <h3>1. Définition d'une correspondance</h3>
+                <p>
+                    D'après le cours, une correspondance f entre deux ensembles
+                    A et B est représentée par une partie G du produit cartésien
+                    A × B. L'ensemble A est l'ensemble de départ, B l'ensemble
+                    d'arrivée et G le graphe de la correspondance.
+                </p>
+                <p>On note la correspondance : f : A → B.</p>
+
+                <h3>2. Correspondance et relation</h3>
+                <p>
+                    Une correspondance permet de définir une relation entre
+                    les éléments de A et de B. Pour a ∈ A et b ∈ B, on écrit
+                    a R b lorsque le couple (a, b) appartient au graphe G.
+                </p>
+
+                <h3>3. Applications</h3>
+                <p>
+                    Une application f : A → B associe à chaque élément de A
+                    une unique image dans B. Pour un élément a de A, son image
+                    est notée f(a).
+                </p>
+
+                <h3>4. Images et antécédents</h3>
+                <ul>
+                    <li><strong>Image d'un élément :</strong> si f(a) = b, alors b est l'image de a.</li>
+                    <li><strong>Antécédent :</strong> si f(a) = b, alors a est un antécédent de b.</li>
+                    <li><strong>Image d'une partie :</strong> f(A') rassemble les images des éléments de A'.</li>
+                    <li><strong>Antécédents d'une partie :</strong> ce sont les éléments du domaine dont l'image appartient à cette partie.</li>
+                </ul>
+
+                <h3>5. Exemple</h3>
+                <p>
+                    Soient A = {1, 2, 3} et B = {2, 4, 6}, avec
+                    f(x) = 2x.
+                </p>
+                <ul>
+                    <li>f(1) = 2 ; l'image de 1 est 2.</li>
+                    <li>f(2) = 4 ; l'image de 2 est 4.</li>
+                    <li>f(3) = 6 ; l'image de 3 est 6.</li>
+                    <li>L'image de A est f(A) = {2, 4, 6}.</li>
+                    <li>L'antécédent de 4 dans A est 2.</li>
+                </ul>
+
+                <h3>6. Injection, surjection et bijection</h3>
+                <ul>
+                    <li><strong>Injection :</strong> deux éléments différents du domaine ont des images différentes. Formellement, f(x) = f(y) implique x = y.</li>
+                    <li><strong>Surjection :</strong> chaque élément de l'ensemble d'arrivée possède au moins un antécédent.</li>
+                    <li><strong>Bijection :</strong> l'application est à la fois injective et surjective ; chaque élément de l'arrivée possède exactement un antécédent.</li>
+                </ul>
+
+                <h3>7. Correspondance inverse</h3>
+                <p>
+                    La correspondance inverse f⁻¹ va de B vers A et inverse
+                    l'ordre des couples du graphe. Pour une application,
+                    f⁻¹ est une application réciproque lorsque f est bijective.
+                </p>
+
+                <h3>8. Composition des applications</h3>
+                <p>
+                    Si f : A → B et g : B → C, leur composition est
+                    g ∘ f : A → C, définie par (g ∘ f)(x) = g(f(x)).
+                    On applique d'abord f, puis g.
+                </p>
+
+                <h3>9. Loi de composition interne</h3>
+
+                <p>
+                    D'après le cours, une loi de composition interne sur un
+                    ensemble E est une application de E × E vers E.
+                    Elle associe à chaque couple (a, b) de E × E un unique
+                    élément c appartenant à E.
+                </p>
+
+                <p>
+                    On peut noter cette opération a ∗ b = c.
+                    Le résultat doit toujours appartenir à l'ensemble E.
+                </p>
+
+                <h3>10. Les sept propriétés d'une loi de composition interne</h3>
+
+                <h4>1. Associativité</h4>
+                <p>
+                    La loi est associative si le regroupement des opérations
+                    ne change pas le résultat :
+                    (a ∗ b) ∗ c = a ∗ (b ∗ c).
+                </p>
+
+                <h4>2. Commutativité</h4>
+                <p>
+                    La loi est commutative si changer l'ordre des deux
+                    éléments ne change pas le résultat :
+                    a ∗ b = b ∗ a.
+                </p>
+
+                <h4>3. Élément neutre</h4>
+                <p>
+                    Un élément e est neutre si, pour tout a de E,
+                    e ∗ a = a et a ∗ e = a.
+                    Il ne modifie donc pas l'élément auquel on l'applique.
+                </p>
+
+                <h4>4. Éléments symétriques</h4>
+                <p>
+                    Si e est l'élément neutre, un élément a' est un
+                    symétrique de a lorsqu'il vérifie les deux égalités :
+                    a' ∗ a = e et a ∗ a' = e.
+                </p>
+
+                <h4>5. Régularité</h4>
+                <p>
+                    Un élément r est régulier à gauche si
+                    r ∗ a = r ∗ b implique a = b.
+                    Il est régulier à droite si
+                    a ∗ r = b ∗ r implique a = b.
+                    S'il vérifie les deux propriétés, il est régulier.
+                </p>
+
+                <h4>6. Idempotence</h4>
+                <p>
+                    La loi est idempotente pour un élément a lorsque
+                    a ∗ a = a. Elle est idempotente sur E si cette égalité
+                    est vraie pour tout a de E.
+                </p>
+
+                <h4>7. Élément absorbant</h4>
+                <p>
+                    Un élément α est absorbant si, pour tout a de E,
+                    α ∗ a = α et a ∗ α = α.
+                    Le résultat de l'opération est alors toujours α.
+                </p>
+
+                <h3>11. Exemples pour comprendre</h3>
+                <p>
+                    Sur l'ensemble des entiers relatifs Z, l'addition
+                    est associative et commutative. Son élément neutre
+                    est 0, car a + 0 = 0 + a = a.
+                </p>
+                <p>
+                    Pour l'addition, l'opposé -a est le symétrique de a,
+                    car a + (-a) = (-a) + a = 0.
+                </p>
+                <p>
+                    Pour la multiplication sur Z, 0 est absorbant :
+                    a × 0 = 0 × a = 0.
+                </p>
+
+                <h3>12. À retenir</h3>
+                <ul>
+                    <li>Une loi de composition interne prend deux éléments de E et donne un résultat dans E.</li>
+                    <li>Associativité : le regroupement ne change pas le résultat.</li>
+                    <li>Commutativité : l'ordre ne change pas le résultat.</li>
+                    <li>Élément neutre : il laisse l'élément inchangé.</li>
+                    <li>Symétrique : il permet de retrouver l'élément neutre.</li>
+                    <li>Régularité : on peut simplifier un même facteur du côté considéré.</li>
+                    <li>Idempotence : a ∗ a = a.</li>
+                    <li>Élément absorbant : le résultat reste cet élément.</li>
+                </ul>
+
+
+                <ul>
+                    <li>L'image est le résultat obtenu en appliquant f à un élément.</li>
+                    <li>Un antécédent est un élément de départ qui produit l'image recherchée.</li>
+                    <li>Une bijection est à la fois injective et surjective.</li>
+                    <li>Dans g ∘ f, on applique f avant g.</li>
+                </ul>
+
+            {% elif numero == 4 %}
+
+                <h2>Chapitre 4 : Cardinalités et dénombrement</h2>
+
+                <h3>1. Cardinal d'un ensemble</h3>
+                <p>
+                    Le cardinal d'un ensemble fini A, noté card(A) ou |A|,
+                    est le nombre d'éléments de cet ensemble.
+                </p>
+                <p><strong>Exemple :</strong> si A = {2, 4, 6}, alors |A| = 3.</p>
+
+                <h3>2. Propriétés du cardinal</h3>
+                <p>Pour des ensembles finis, le cours présente notamment :</p>
+                <ul>
+                    <li>|A| = 0 si A = ∅.</li>
+                    <li>|A ∩ B| = |A| + |B| − |A ∪ B|.</li>
+                    <li>|C<sub>E</sub>A| = |E| − |A|, où C<sub>E</sub>A désigne le complémentaire de A dans E.</li>
+                    <li>|A × B| = |A| × |B|.</li>
+                    <li>|P(A)| = 2<sup>|A|</sup>, où P(A) est l'ensemble des parties de A.</li>
+                </ul>
+
+                <h3>3. Ensembles finis, infinis et dénombrables</h3>
+                <p>
+                    Un ensemble est fini lorsque son cardinal est un nombre naturel.
+                    Sinon, il est dit infini.
+                </p>
+                <p>
+                    Selon le cours, un ensemble est dénombrable ou énumérable
+                    s'il existe une bijection de cet ensemble vers une partie
+                    de l'ensemble des nombres entiers.
+                </p>
+                <p><strong>Exemples du cours :</strong> les ensembles finis,
+                les mots sur un alphabet fini et les expressions régulières.</p>
+
+                <h3>4. Le dénombrement</h3>
+                <p>
+                    Le dénombrement consiste à calculer le nombre d'éléments
+                    de groupements obtenus en tirant certains éléments d'un ensemble.
+                    Le cours distingue les combinaisons, les arrangements et les permutations.
+                </p>
+
+                <h3>5. Les combinaisons</h3>
+                <p>
+                    Une combinaison est un choix d'éléments dans lequel
+                    l'ordre ne compte pas : choisir A puis B revient au même
+                    que choisir B puis A.
+                </p>
+                <h4>Sans répétition</h4>
+                <p>C(n,p) = n! / [p!(n − p)!]</p>
+                <p>On choisit p éléments distincts parmi n éléments.</p>
+                <p><strong>Exemple :</strong> choisir 2 étudiants parmi 5 :
+                C(5,2) = 5! / (2! × 3!) = 10.</p>
+
+                <h4>Avec répétition</h4>
+                <p>
+                    Le cours donne le nombre de choix de p éléments parmi n
+                    types, lorsque les répétitions sont autorisées :
+                </p>
+                <p>C(n+p−1,p) = (n+p−1)! / [p!(n−1)!]</p>
+
+                <h3>6. Les arrangements</h3>
+                <p>
+                    Un arrangement est un choix d'éléments dans lequel
+                    l'ordre compte : AB et BA sont deux résultats différents.
+                </p>
+                <h4>Sans répétition</h4>
+                <p>A(n,p) = n! / (n − p)!</p>
+                <p><strong>Exemple :</strong> attribuer les places de président
+                et de vice-président à 2 personnes parmi 5 :
+                A(5,2) = 5 × 4 = 20 possibilités.</p>
+
+                <h4>Avec répétition</h4>
+                <p>Le cours donne : |X| = n<sup>p</sup>.</p>
+                <p>Il s'agit de tirages successifs avec remise, également appelés p-listes.</p>
+
+                <h3>7. Les permutations</h3>
+                <p>
+                    Une permutation est un arrangement dans lequel on choisit
+                    les n éléments de l'ensemble.
+                </p>
+                <h4>Sans répétition</h4>
+                <p>P(n) = n!</p>
+                <p><strong>Exemple :</strong> ranger 4 livres différents :
+                4! = 4 × 3 × 2 × 1 = 24 ordres possibles.</p>
+
+                <h4>Avec répétition d'éléments identiques</h4>
+                <p>
+                    Si les n éléments comprennent des groupes d'éléments
+                    identiques de tailles n₁, n₂, ..., nₘ, avec
+                    n₁ + n₂ + ... + nₘ = n, le cours donne :
+                </p>
+                <p>P = n! / (n₁! × n₂! × ... × nₘ!)</p>
+
+                <h3>8. Comment choisir la bonne formule ?</h3>
+                <ul>
+                    <li><strong>Combinaison :</strong> l'ordre ne compte pas.</li>
+                    <li><strong>Arrangement :</strong> l'ordre compte et on choisit p éléments.</li>
+                    <li><strong>Permutation :</strong> on ordonne tous les n éléments.</li>
+                    <li><strong>Avec répétition :</strong> certains éléments peuvent être choisis plusieurs fois.</li>
+                    <li><strong>Sans répétition :</strong> un élément déjà choisi ne peut pas être repris.</li>
+                </ul>
+
+                <h3>9. À retenir</h3>
+                <ul>
+                    <li>Le cardinal indique le nombre d'éléments d'un ensemble fini.</li>
+                    <li>Le symbole ! désigne la factorielle : 4! = 4 × 3 × 2 × 1 = 24.</li>
+                    <li>Combinaison : choix sans tenir compte de l'ordre.</li>
+                    <li>Arrangement : choix en tenant compte de l'ordre.</li>
+                    <li>Permutation : arrangement de tous les éléments.</li>
+                </ul>
+
+
+            {% elif numero == 5 %}
+                <h2>Chapitre 5 : Ensembles structurés</h2>
+
+                <h3>1. Notion d'ensemble structuré</h3>
+                <p>
+                    Un ensemble structuré est un ensemble muni d'une ou de plusieurs
+                    lois de composition interne. Ces lois permettent d'étudier
+                    les opérations et leurs propriétés sur cet ensemble.
+                </p>
+
+                <h3>2. Rappel : loi de composition interne</h3>
+                <p>
+                    Une loi de composition interne sur un ensemble E associe
+                    à chaque couple (a, b) d'éléments de E un élément de E.
+                    On la note souvent ∗.
+                </p>
+                <p><strong>Exemple :</strong> l'addition est une loi de composition
+                interne sur l'ensemble des entiers relatifs ℤ, car la somme de deux
+                entiers relatifs est encore un entier relatif.</p>
+
+                <h3>3. Propriétés d'une loi de composition interne</h3>
+
+                <h4>3.1. Associativité</h4>
+                <p>
+                    La loi ∗ est associative si, pour tous a, b et c de E :
+                    (a ∗ b) ∗ c = a ∗ (b ∗ c).
+                </p>
+                <p><strong>Exemple :</strong> (2 + 3) + 4 = 2 + (3 + 4) = 9.</p>
+
+                <h4>3.2. Commutativité</h4>
+                <p>
+                    La loi ∗ est commutative si, pour tous a et b de E :
+                    a ∗ b = b ∗ a.
+                </p>
+                <p><strong>Exemple :</strong> 3 + 5 = 5 + 3.</p>
+
+                <h4>3.3. Élément neutre</h4>
+                <p>
+                    Un élément e est neutre si, pour tout a de E,
+                    e ∗ a = a et a ∗ e = a.
+                </p>
+                <p><strong>Exemple :</strong> 0 est l'élément neutre de l'addition
+                sur ℤ, car 0 + a = a + 0 = a.</p>
+
+                <h4>3.4. Élément symétrique</h4>
+                <p>
+                    Par rapport à un élément neutre e, un élément a est symétrisable
+                    s'il possède un élément a' tel que a' ∗ a = e et a ∗ a' = e.
+                    Le cours distingue le symétrique à gauche et le symétrique à droite.
+                </p>
+                <p><strong>Exemple :</strong> pour l'addition sur ℤ, le symétrique
+                de 5 est −5, car 5 + (−5) = 0.</p>
+
+                <h4>3.5. Régularité</h4>
+                <p>
+                    Un élément r est régulier à gauche si r ∗ a = r ∗ b implique a = b.
+                    Il est régulier à droite si a ∗ r = b ∗ r implique a = b.
+                    S'il est régulier des deux côtés, il est régulier.
+                </p>
+
+                <h4>3.6. Idempotence</h4>
+                <p>
+                    La loi est idempotente si, pour tout a de E, a ∗ a = a.
+                </p>
+                <p><strong>Exemple :</strong> pour l'union des ensembles,
+                A ∪ A = A.</p>
+
+                <h4>3.7. Élément absorbant</h4>
+                <p>
+                    Un élément α est absorbant si, pour tout a de E,
+                    α ∗ a = α et a ∗ α = α.
+                </p>
+                <p><strong>Exemple :</strong> 0 est absorbant pour la multiplication
+                sur ℤ, car 0 × a = a × 0 = 0.</p>
+
+                <h3>4. Distributivité de deux lois</h3>
+                <p>
+                    Soit E muni de deux lois internes ∗ et ⊤. La loi ⊤ est
+                    distributive à gauche par rapport à ∗ si :
+                </p>
+                <p>a ⊤ (b ∗ c) = (a ⊤ b) ∗ (a ⊤ c).</p>
+                <p>
+                    Elle est distributive à droite si :
+                    (b ∗ c) ⊤ a = (b ⊤ a) ∗ (c ⊤ a).
+                    Elle est distributive par rapport à ∗ si les deux propriétés
+                    sont vérifiées.
+                </p>
+                <p><strong>Exemple :</strong> la multiplication est distributive
+                par rapport à l'addition : 2 × (3 + 4) = (2 × 3) + (2 × 4).</p>
+
+                <h3>5. Isomorphisme</h3>
+                <p>
+                    Soient (E, ∗) et (F, ⊤) deux ensembles structurés.
+                    Une application f de E vers F est un isomorphisme si :
+                </p>
+                <ul>
+                    <li>f est une bijection ;</li>
+                    <li>pour tous x et y de E, f(x ∗ y) = f(x) ⊤ f(y).</li>
+                </ul>
+
+                <h4>Propriétés de l'isomorphisme</h4>
+                <ul>
+                    <li>Si deux ensembles structurés sont isomorphes, leurs lois possèdent les mêmes propriétés.</li>
+                    <li>Si f est un isomorphisme, alors son application réciproque f⁻¹ est également un isomorphisme.</li>
+                </ul>
+
+                <h3>6. À retenir</h3>
+                <ul>
+                    <li>Une loi interne associe deux éléments de E à un résultat qui appartient encore à E.</li>
+                    <li>L'associativité concerne le regroupement des opérations.</li>
+                    <li>La commutativité concerne l'ordre des éléments.</li>
+                    <li>L'élément neutre laisse l'élément inchangé.</li>
+                    <li>L'élément absorbant donne toujours le même résultat.</li>
+                    <li>La distributivité relie deux lois internes.</li>
+                    <li>Un isomorphisme est une bijection qui conserve les opérations.</li>
+                </ul>
+            {% endif %}
+        </article>
+    </main>
+
+    <footer>
+        Négo's University — Apprendre, comprendre, réussir.
+    </footer>
+</body>
+</html>
+
